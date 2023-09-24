@@ -1,0 +1,16 @@
+.header{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2%;
+}
+
+.box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.link{
+    font-size: 21px;
+    color: #32E6E2 ;
+}
