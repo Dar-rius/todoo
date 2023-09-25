@@ -18,8 +18,7 @@ export default function Home() {
         }}>
           <div  style={{
             display:"flex",
-            alignItems:"center",
-          }}>
+            alignItems:"center", }}>
             <strong
               style={{
                 color:"#32E6E2",
