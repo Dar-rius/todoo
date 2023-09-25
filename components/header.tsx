@@ -9,8 +9,8 @@ export default function Header(){
             <div className={styles.box}>
                 <Image
                     src={Home}
-                    height={50}
-                    width={50}
+                    height={45}
+                    width={45}
                     alt={"home page"}
                 />
 
