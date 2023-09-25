@@ -8,17 +8,17 @@ export  default function Signup(){
                 <form className={styles.form}>
                     <div className={styles.min}>
                         <label>Email</label>
-                        <input placeholder="Entrer votre adresse mail"/>
+                        <input type="email" placeholder="Ex: alex@gmail.com"/>
                     </div>
 
                     <div className={styles.min}>
                         <label>Mot de passe</label>
-                        <input placeholder="Donner un mot de passe"/>
+                        <input type="password" placeholder="Ex: Mot de passe"/>
                     </div>
 
                     <div className={styles.min}>
-                        <label>Mot de passe</label>
-                        <input placeholder="Repeter le mot de passe"/>
+                        <label>Confirmer votre mot de passe</label>
+                        <input type="password" placeholder="Ex: Mot de passe"/>
                     </div>
                     <button className={styles.log}>
                         Creer un compte

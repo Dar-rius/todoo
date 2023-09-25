@@ -8,12 +8,12 @@ export  default function Login(){
                 <form className={styles.form}>
                     <div className={styles.min}>
                         <label>Email</label>
-                        <input placeholder="Entrer votre adresse mail"/>
+                        <input type="email" placeholder="Ex: alex@gmail.com"/>
                     </div>
 
                     <div className={styles.min}>
                         <label>Mot de passe</label>
-                        <input placeholder="Entrer votre mot de passe"/>
+                        <input type="password" placeholder="Ex: Mot de passe"/>
                     </div>
                     <button className={styles.log}>
                         Se connecter
