@@ -1,0 +1,50 @@
+.sec1{
+    text-align: center;
+    margin-top: 6.5%;
+    background-color: #212F3C;
+    margin-right: 25%;
+    margin-left: 25%;
+    padding-bottom: 3%;
+    padding-top: 3%;
+}
+
+.title{
+    margin-bottom: 3%;
+    font-size:30px
+}
+
+.min input{
+    border: none;
+    border-radius: 15px;
+    background: rgba(30, 30, 30, 0.60);
+    padding: 4%;
+    font-size: 16px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.min{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+}
+
+.form label{
+    margin-bottom: 2%;
+    display: flex;
+    font-size:22px
+}
+
+.log{
+    border: none;
+    font-size: 20px;
+    background-color:#17A589 ;
+    padding: 1.5%;
+    width: 30%;
+}
