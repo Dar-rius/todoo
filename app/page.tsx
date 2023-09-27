@@ -4,8 +4,18 @@ import Close from "@/public/close.svg"
 import Check from "@/public/checkmark.svg"
 import Image from "next/image";
 import Link from "next/link";
+import prisma from "@/prisma";
 
-export default function Home() {
+const getData = async() => {
+  try{
+    let res = await prisma.project.findMany()
+    return res
+  }catch (err){
+    console.error(err)
+  }
+}
+export default async function Home() {
+  let data = await getData()
   return (
     <main>
       <Header/>
@@ -57,63 +67,37 @@ export default function Home() {
           marginRight:"24%",
           marginLeft:"24%",
         }}>
-          <div className={styles.projects}>
-            <Link href={""}
-                  style={{
-                    fontSize:"18px",
-                    fontWeight:"bold"
-                  }}
-            >Projet Test
-            </Link>
+          {data.map((item)=>
+            <div className={styles.projects} key={item.id}>
+              <Link href={""}
+                    style={{
+                      fontSize:"18px",
+                      fontWeight:"bold"
+                    }}
+              >{item.name}
+              </Link>
 
-            <div style={{
-              width:"15%",
-              display:"flex",
-              justifyContent:"space-between",
-              alignItems:"center",
-            }}>
-              <Image
-                  src={Close}
-                  alt={"Fermer"}
-                  width={30}
-                  height={30}
-              />
-              <Image
-                  src={Check}
-                  alt={"Finish"}
-                  width={30}
-                  height={30}
-              />
+              <div style={{
+                width:"15%",
+                display:"flex",
+                justifyContent:"space-between",
+                alignItems:"center",
+              }}>
+                <Image
+                    src={Close}
+                    alt={"Fermer"}
+                    width={30}
+                    height={30}
+                />
+                <Image
+                    src={Check}
+                    alt={"Finish"}
+                    width={30}
+                    height={30}
+                />
+              </div>
             </div>
-          </div>
-
-          <div className={styles.projects}>
-          <Link href={""}
-            style={{
-              fontSize:"20px",
-              fontWeight:"bold"
-            }}
-            >Projet Test 1</Link>
-            <div style={{
-                  width:"15%",
-                  display:"flex",
-                  justifyContent:"space-between",
-                  alignItems:"center",}}
-            >
-              <Image
-                  src={Close}
-                  alt={"Fermer"}
-                  width={30}
-                  height={30}
-              />
-              <Image
-                  src={Check}
-                  alt={"Finish"}
-                  width={30}
-                  height={30}
-              />
-            </div>
-          </div>
+          )}
         </div>
       </section>
     </main>
