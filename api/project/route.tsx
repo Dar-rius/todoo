@@ -10,7 +10,7 @@ async function main(){
    }
 }
 
-export const AddProject = async (req: Request, res: NextResponse) =>{
+export const POST = async (req: Request, res: NextResponse) =>{
     try{
         await main()
         let name = await req.json()

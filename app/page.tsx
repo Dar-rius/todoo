@@ -1,21 +1,21 @@
 import styles from './styles/page.module.css'
 import Header from "@/components/header";
-import Close from "@/public/close.svg"
-import Check from "@/public/checkmark.svg"
-import Image from "next/image";
-import Link from "next/link";
+import Forms from "@/components/client/projects";
 import prisma from "@/prisma";
-
+import Link from "next/link";
+import Image from "next/image";
+import Close from "@/public/close.svg";
+import Check from "@/public/checkmark.svg";
+import React, {use} from 'react'
 const getData = async() => {
-  try{
-    let res = await prisma.project.findMany()
-    return res
-  }catch (err){
-    console.error(err)
-  }
+  let data = await prisma.project.findMany()
+  return data
 }
-export default async function Home() {
-  let data = await getData()
+
+
+export default function Home() {
+  let res = use(getData())
+
   return (
     <main>
       <Header/>
@@ -54,12 +54,7 @@ export default async function Home() {
             Lundi
           </div>
         </div>
-
-        <div className={styles.sec2}>
-          <input placeholder="Ajourter un nouveau projet" />
-          <button>+</button>
-        </div>
-
+        <Forms/>
         <div style={{
           display:"flex",
           flexDirection:"column",
@@ -67,39 +62,54 @@ export default async function Home() {
           marginRight:"24%",
           marginLeft:"24%",
         }}>
-          {data.map((item)=>
-            <div className={styles.projects} key={item.id}>
-              <Link href={""}
-                    style={{
-                      fontSize:"18px",
-                      fontWeight:"bold"
-                    }}
-              >{item.name}
-              </Link>
+          {res.map((item)=>
+              <div className={styles.projects} key={item.id}>
+                <Link href={""}
+                      style={{
+                        fontSize:"18px",
+                        fontWeight:"bold"
+                      }}
+                >{item.name}
+                </Link>
 
-              <div style={{
-                width:"15%",
-                display:"flex",
-                justifyContent:"space-between",
-                alignItems:"center",
-              }}>
-                <Image
-                    src={Close}
-                    alt={"Fermer"}
-                    width={30}
-                    height={30}
-                />
-                <Image
-                    src={Check}
-                    alt={"Finish"}
-                    width={30}
-                    height={30}
-                />
+                <div style={{
+                  width:"15%",
+                  display:"flex",
+                  justifyContent:"space-between",
+                  alignItems:"center",
+                }}>
+                  <Image
+                      src={Close}
+                      alt={"Fermer"}
+                      width={30}
+                      height={30}
+                  />
+                  <Image
+                      src={Check}
+                      alt={"Finish"}
+                      width={30}
+                      height={30}
+                  />
+                </div>
               </div>
-            </div>
           )}
         </div>
       </section>
     </main>
   )
+}
+
+export const handleSubmit = async(name:string) =>{
+  try{
+    const body = {name}
+    await fetch("api/project/route/POST",
+        {
+          method:"POST",
+          headers:{"Content-Type": "Application/json"},
+          body: JSON.stringify(body)
+        })
+  }
+  catch (err){
+    console.error(err)
+  }
 }
