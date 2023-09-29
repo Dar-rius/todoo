@@ -3,10 +3,8 @@ import Header from "@/components/header";
 import Forms from "@/components/client/projects";
 import prisma from "@/prisma";
 import Link from "next/link";
-import Image from "next/image";
-import Close from "@/public/close.svg";
-import Check from "@/public/checkmark.svg";
 import React, { use } from "react";
+import Delete from "@/components/client/delete";
 
 const getData = async () => {
   let data = await prisma.project.findMany();
@@ -82,18 +80,7 @@ export default function Home() {
               >
                 {item.name}
               </Link>
-
-              <div
-                style={{
-                  width: "15%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Image src={Close} alt={"Fermer"} width={30} height={30} />
-                <Image src={Check} alt={"Finish"} width={30} height={30} />
-              </div>
+              <Delete id={item.id}/>
             </div>
           ))}
         </div>
