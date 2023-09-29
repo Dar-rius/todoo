@@ -12,7 +12,7 @@ export async function handleSubmit(name: { name: string }) {
     if (!res.ok) {
       console.log("Error in request");
     }
-    console.log(res);
+    return res
   } catch (err) {
     console.error(err);
   }

@@ -19,13 +19,13 @@ model User {
 model Todo {
   id        Int     @id @default(autoincrement())
   content   String  @db.VarChar(250)
-  stat String @db.VarChar(20)
+  stat      Boolean @default(false)
   project   Project @relation(fields: [projectId], references: [id])
-  projectId Int     @unique
+  projectId Int
 }
 
 model Project {
   id   Int    @id @default(autoincrement())
   name String @db.VarChar(50)
-  Todo Todo?
+  Todo Todo[]
 }

@@ -7,8 +7,12 @@ import React, { use } from "react";
 import Delete from "@/components/client/delete";
 
 const getData = async () => {
-  let data = await prisma.project.findMany();
-  return data;
+    try{
+        const data = await prisma.project.findMany();
+        return data
+    } catch(err){
+        console.error(err)
+    }
 };
 
 export default function Home() {
@@ -69,10 +73,10 @@ export default function Home() {
             marginLeft: "24%",
           }}
         >
-          {res.map((item) => (
+          {res?.map((item) => (
             <div className={styles.projects} key={item.id}>
               <Link
-                href={""}
+                href={`/todo/${item.id}`}
                 style={{
                   fontSize: "18px",
                   fontWeight: "bold",

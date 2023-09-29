@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Close from "@/public/close.svg";
 import Check from "@/public/checkmark.svg";
 import styles from "@/app/styles/page.module.css"
 const deleteData = async(id: string) => {
