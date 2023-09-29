@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Close from "@/public/close.svg";
 import Check from "@/public/checkmark.svg";
-
+import styles from "@/app/styles/page.module.css"
 const deleteData = async(id: string) => {
     try {
         let res = await fetch(`/api/project/${id}`,{
@@ -22,26 +22,19 @@ const deleteData = async(id: string) => {
 }
 
 export default function Delete(id: {id:number}) {
+    let _id = id.id.toString()
   return (
     <div
       style={{
         width: "15%",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
       }}
     >
-      <button onClick={
-          ()=>{
-              let _id = id.id.toString()
-            deleteData(_id).then((res)=>{
-                console.log(res)
-            })
-          }
-      }>
-        <Image src={Close} alt={"Fermer"} width={30} height={30} />
-      </button>
-      <button >
+      <button onClick={()=>{
+          deleteData(_id).then((res)=>{
+              console.log((res))
+          })
+      }}
+      className={styles.bouton}>
         <Image src={Check} alt={"Finish"} width={30} height={30} />
       </button>
     </div>
