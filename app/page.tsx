@@ -7,11 +7,26 @@ import Image from "next/image";
 import Close from "@/public/close.svg";
 import Check from "@/public/checkmark.svg";
 import React, {use} from 'react'
+
 const getData = async() => {
   let data = await prisma.project.findMany()
   return data
 }
-
+export async function handleSubmit(name:{name:string}){
+  console.log(name)
+  try{
+    const res = await fetch("/api/project", {
+      method: "POST",
+      body: JSON.stringify(name)
+    })
+    if(!res.ok){
+      console.log("Error in request")
+    }
+    console.log(res)
+  } catch(err){
+    console.error(err)
+  }
+}
 
 export default function Home() {
   let res = use(getData())
@@ -97,19 +112,4 @@ export default function Home() {
       </section>
     </main>
   )
-}
-
-export const handleSubmit = async(name:string) =>{
-  try{
-    const body = {name}
-    await fetch("api/project/route/POST",
-        {
-          method:"POST",
-          headers:{"Content-Type": "Application/json"},
-          body: JSON.stringify(body)
-        })
-  }
-  catch (err){
-    console.error(err)
-  }
 }

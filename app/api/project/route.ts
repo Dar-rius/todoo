@@ -1,8 +1,7 @@
 import prisma from "@/prisma"
-import {NextResponse} from "next/server";
-import {Request} from "next/dist/compiled/@edge-runtime/primitives";
+import {NextResponse, NextRequest} from "next/server";
 
-async function main(){
+export async function main(){
    try{
        prisma.$connect()
    }catch (err){
@@ -10,20 +9,14 @@ async function main(){
    }
 }
 
-export const POST = async (req: Request, res: NextResponse) =>{
+ export async function POST(req: Request){
     try{
+        const {name} = await req.json()
         await main()
-        let name = await req.json()
-        await prisma.project.create({
-            data: {
-                name: name,
-            }
-        })
-        NextResponse.json({message:"data validate"}, {status:201})
-    } catch{
-        NextResponse.json({message:"Error data don't validate"}, {status:500})
-    } finally {
-        prisma.$disconnect()
+        await prisma.project.create({data: {name}})
+        return NextResponse.json({message:"data validate"}, {status:201})
+    } catch(err){
+        return NextResponse.json({message:"Error data don't validate: ", err}, {status:500})
     }
 }
 
