@@ -1,5 +1,6 @@
 import { main } from "../route";
 import { type NextRequest, NextResponse } from "next/server";
+import prisma from "@/prisma";
 
 export async function DELETE(req: NextRequest, {params}:{params:{id: string}}) {
   try {
@@ -14,6 +15,6 @@ export async function DELETE(req: NextRequest, {params}:{params:{id: string}}) {
   } catch (err) {
     return NextResponse.json({ message: "Id not found" }, { status: 404 });
   } finally {
-    prisma.$disconnect;
+    prisma.$disconnect();
   }
 }

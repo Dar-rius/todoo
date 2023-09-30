@@ -5,6 +5,8 @@ import styles from "../../styles/todo.module.css"
 import prisma from "@/prisma";
 import {use} from "react";
 import AddTodo from "@/components/client/todo/todos";
+import CheckButton from "@/components/client/todo/update";
+
 const getData = async(id: string) => {
     let _id = Number(id)
     try{
@@ -65,12 +67,7 @@ export  default function Todo({params}: {params:{id:string}}){
                                             }}>
                                             {item.content}
                                         </p>
-                                        <Image
-                                            src={Check}
-                                            alt={"Task finish"}
-                                            width={30}
-                                            height={30}
-                                        />
+                                        <CheckButton id={item.id}/>
                                     </div>
                                 </div>
                             )}
