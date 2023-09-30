@@ -5,18 +5,20 @@ import prisma from "@/prisma";
 import Link from "next/link";
 import React, { use } from "react";
 import Delete from "@/components/client/project/delete";
+import { format } from "date-fns";
 
 const getData = async () => {
-    try{
-        const data = await prisma.project.findMany();
-        return data
-    } catch(err){
-        console.error(err)
-    }
+  try {
+    const data = await prisma.project.findMany();
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export default function Home() {
   let res = use(getData());
+  const date = new Date();
 
   return (
     <main>
@@ -43,15 +45,15 @@ export default function Home() {
                 marginRight: "5%",
               }}
             >
-              24
+              {date.getDate()}
             </strong>
             <div
               style={{
                 fontSize: "18px",
               }}
             >
-              <strong>Septembre</strong>
-              <div>2023</div>
+              <strong>{format(date, "MMMM")}</strong>
+              <div>{date.getFullYear()}</div>
             </div>
           </div>
 
@@ -60,7 +62,7 @@ export default function Home() {
               fontSize: "28px",
             }}
           >
-            Lundi
+            {format(date, "eeee")}
           </div>
         </div>
         <Forms />
@@ -84,7 +86,7 @@ export default function Home() {
               >
                 {item.name}
               </Link>
-              <Delete id={item.id}/>
+              <Delete id={item.id} />
             </div>
           ))}
         </div>
