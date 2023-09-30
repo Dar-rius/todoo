@@ -18,9 +18,6 @@ export async function DELETE(
       where: {
         id: id,
       },
-      include: {
-        Todo: true,
-      },
     });
     return NextResponse.json({ message: "Data deleted" }, { status: 200 });
   } catch (err) {
