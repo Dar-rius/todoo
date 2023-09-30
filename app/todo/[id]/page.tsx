@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "../../styles/todo.module.css"
 import prisma from "@/prisma";
 import {use} from "react";
-
+import AddTodo from "@/components/client/todo/todos";
 const getData = async(id: string) => {
     let _id = Number(id)
     try{
@@ -38,11 +38,7 @@ export  default function Todo({params}: {params:{id:string}}){
                         }}>
                             {data?.name}
                         </strong>
-                        <div className={styles.sec2}>
-                            <input placeholder="Ajouter une nouvelle tache"/>
-                            <button>+</button>
-                        </div>
-
+                        <AddTodo id={id}/>
                         <div>
                             <strong
                                 style={{

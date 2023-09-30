@@ -1,10 +1,10 @@
 import styles from "./styles/page.module.css";
 import Header from "@/components/header";
-import Forms from "@/components/client/projects";
+import Forms from "@/components/client/project/projects";
 import prisma from "@/prisma";
 import Link from "next/link";
 import React, { use } from "react";
-import Delete from "@/components/client/delete";
+import Delete from "@/components/client/project/delete";
 
 const getData = async () => {
     try{
