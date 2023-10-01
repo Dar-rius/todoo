@@ -1,6 +1,4 @@
-import Check from "@/public/checkmark.svg";
 import Header from "@/components/header";
-import Image from "next/image";
 import styles from "../../styles/todo.module.css";
 import prisma from "@/prisma";
 import { use } from "react";
