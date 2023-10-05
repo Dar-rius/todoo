@@ -1,26 +1,23 @@
 "use client";
 import styles from "@/app/styles/page.module.css";
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Forms() {
-  let [name, setName] = useState("");
+  let name = useRef("");
   let router = useRouter();
 
   const refresh = () => {
     router.refresh();
   };
 
-  const handleChange = (event: any) => {
-    setName(event.target.value);
-  };
-
-  async function handleSubmit(name: { name: string }) {
-    console.log(name);
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     try {
+      let data = { name: name.current };
       const res = await fetch("/api/project", {
         method: "POST",
-        body: JSON.stringify(name),
+        body: JSON.stringify(data),
       });
       if (!res.ok) {
         console.log("Error in request");
@@ -33,17 +30,11 @@ export default function Forms() {
   }
 
   return (
-    <form
-      onSubmit={(e: any) => {
-        e.preventDefault();
-        handleSubmit({ name }).then((res) => console.log(res));
-      }}
-      className={styles.sec2}
-    >
+    <form onSubmit={handleSubmit} className={styles.sec2}>
       <input
         name="name"
         placeholder="Ajourter un nouveau projet"
-        onChange={handleChange}
+        onChange={(e) => (name.current = e.target.value)}
       />
       <button type="submit">+</button>
     </form>

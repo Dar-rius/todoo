@@ -1,26 +1,21 @@
 "use client";
 import styles from "@/app/styles/todo.module.css";
-import { useState } from "react";
+import { useRef } from "react";
 import { useRouter } from "next/navigation";
 
 export default function AddTodo({ id }: { id: string }) {
-  let [content, setContent] = useState("");
+  let content = useRef("");
   let router = useRouter();
 
-  const handleSubmit = async ({
-    content,
-    id,
-  }: {
-    content: string;
-    id: string;
-  }) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     try {
-      let projectId = Number(id);
-      console.log(projectId);
-      console.log(content);
+      const data = { content: content.current, projectId: Number(id) };
+      console.log(data.projectId);
+      console.log(data.content);
       let res = await fetch("/api/todo", {
         method: "POST",
-        body: JSON.stringify({ content, projectId }),
+        body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },
       });
       if (!res.ok) {
@@ -33,21 +28,12 @@ export default function AddTodo({ id }: { id: string }) {
     }
   };
 
-  const handleChange = (e: any) => {
-    setContent(e.target.value);
-  };
-
   return (
-    <form
-      onSubmit={(e: any) => {
-        e.preventDefault();
-        handleSubmit({ content, id }).then((res) => {
-          console.log(res);
-        });
-      }}
-      className={styles.sec2}
-    >
-      <input placeholder="Ajouter une nouvelle tache" onChange={handleChange} />
+    <form onSubmit={handleSubmit} className={styles.sec2}>
+      <input
+        placeholder="Ajouter une nouvelle tache"
+        onChange={(e) => (content.current = e.target.value)}
+      />
       <button type="submit">+</button>
     </form>
   );
