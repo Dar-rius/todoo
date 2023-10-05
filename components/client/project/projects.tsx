@@ -13,19 +13,23 @@ export default function Forms() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    try {
-      let data = { name: name.current };
-      const res = await fetch("/api/project", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) {
-        console.log("Error in request");
+    if (name.current.length <= 0) {
+      console.error("Error");
+    } else {
+      try {
+        const data = { name: name.current };
+        const res = await fetch("/api/project", {
+          method: "POST",
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) {
+          console.error("Error in request");
+        }
+        refresh();
+        return res;
+      } catch (err) {
+        console.error(err);
       }
-      refresh();
-      return res;
-    } catch (err) {
-      console.error(err);
     }
   }
 

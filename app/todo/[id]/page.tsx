@@ -67,7 +67,7 @@ export default function Todo({ params }: { params: { id: string } }) {
                   <div className={styles.projects}>
                     <p
                       style={{
-                        fontSize: "16px",
+                        fontSize: "18px",
                       }}
                     >
                       {item.content}
@@ -106,7 +106,7 @@ export default function Todo({ params }: { params: { id: string } }) {
                   <div className={styles.projectsCompleted1}>
                     <p
                       style={{
-                        fontSize: "16px",
+                        fontSize: "18px",
                         textDecoration: "line-through",
                       }}
                     >

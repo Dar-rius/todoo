@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Check from "@/public/checkmark.svg";
 import Close from "@/public/close.svg";
-import styles from "@/app/styles/page.module.css";
+import styles from "@/app/styles/todo.module.css";
 import { useRouter } from "next/navigation";
 
 export default function CheckButton({ id }: { id: number }) {
@@ -46,15 +46,27 @@ export default function CheckButton({ id }: { id: number }) {
       style={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-around",
-        width: "15%",
+        justifyContent: "space-between",
+        width: "13%",
       }}
     >
       <button onClick={() => deleteData(_id)} className={styles.bouton}>
-        <Image src={Close} alt={"Task delete"} width={30} height={30} />
+        <Image
+          src={Close}
+          alt={"Task delete"}
+          width={30}
+          height={30}
+          className={styles.ima1}
+        />
       </button>
       <button onClick={() => updateData(_id)} className={styles.bouton}>
-        <Image src={Check} alt={"Task finish"} width={30} height={30} />
+        <Image
+          src={Check}
+          alt={"Task finish"}
+          width={35}
+          height={35}
+          className={styles.ima}
+        />
       </button>
     </div>
   );

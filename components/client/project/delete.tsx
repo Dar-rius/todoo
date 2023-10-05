@@ -40,7 +40,13 @@ export default function Delete(id: { id: number }) {
         }}
         className={styles.bouton}
       >
-        <Image src={Check} alt={"Finish"} width={30} height={30} />
+        <Image
+          src={Check}
+          alt={"Finish"}
+          width={30}
+          height={30}
+          className={styles.ima}
+        />
       </button>
     </div>
   );

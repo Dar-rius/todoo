@@ -9,22 +9,24 @@ export default function AddTodo({ id }: { id: string }) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const data = { content: content.current, projectId: Number(id) };
-      console.log(data.projectId);
-      console.log(data.content);
-      let res = await fetch("/api/todo", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" },
-      });
-      if (!res.ok) {
-        console.log("Error in pos data");
+    if (content.current.length === 0) {
+      console.error("Error");
+    } else {
+      try {
+        const data = { content: content.current, projectId: Number(id) };
+        let res = await fetch("/api/todo", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: { "Content-Type": "application/json" },
+        });
+        if (!res.ok) {
+          console.log("Error in pos data");
+        }
+        router.refresh();
+        return res.json();
+      } catch (err) {
+        console.error(err);
       }
-      router.refresh();
-      return res.json();
-    } catch (err) {
-      console.error(err);
     }
   };
 
