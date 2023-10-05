@@ -1,17 +1,22 @@
-.header{
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 2%;
-    margin-bottom: 5%;
+.header {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 2%;
+  margin-bottom: 5%;
 }
 
-.box{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.link{
-    font-size: 21px;
-    color: #32E6E2 ;
+.link,
+.link1 {
+  font-size: 21px;
+  color: #32e6e2;
+}
+
+.link1 {
+  font-weight: bold;
 }

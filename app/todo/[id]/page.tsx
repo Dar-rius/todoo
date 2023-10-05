@@ -49,7 +49,7 @@ export default function Todo({ params }: { params: { id: string } }) {
               marginBottom: "1.5%",
             }}
           >
-            Todo
+            Task
           </strong>
           {data?.Todo.map(
             (item) =>
@@ -103,11 +103,11 @@ export default function Todo({ params }: { params: { id: string } }) {
                   }}
                   key={item.id}
                 >
-                  <div className={styles.projectsCompleted}>
+                  <div className={styles.projectsCompleted1}>
                     <p
                       style={{
                         fontSize: "16px",
-                        color: "#85929E",
+                        textDecoration: "line-through",
                       }}
                     >
                       {item.content}
