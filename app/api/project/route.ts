@@ -22,23 +22,3 @@ export async function POST(req: Request) {
     );
   }
 }
-
-export const DeleteProject = async (
-  _id: number,
-  req: Request,
-  res: NextResponse,
-) => {
-  try {
-    await main();
-    await prisma.project.delete({
-      where: {
-        id: _id,
-      },
-    });
-    NextResponse.json({ message: "Delete success" }, { status: 200 });
-  } catch {
-    NextResponse.json({ message: "Delete data failed" }, { status: 404 });
-  } finally {
-    prisma.$disconnect();
-  }
-};
